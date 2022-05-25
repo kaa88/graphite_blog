@@ -6,10 +6,16 @@
 
 
 // Fonts
-// roboto
+// gotham 700 400, inter 500 600
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap');
 @import "fontscript";
-$font-1: Roboto, Arial, sans-serif;
+$font-1: Gotham, Arial, sans-serif;
+$font-2: Inter, Arial, sans-serif;
+// Fonts test
+// h1 {
+// 	font-family: $font-1;
+// 	font-weight: 700;
+// }
 
 
 // Colors
