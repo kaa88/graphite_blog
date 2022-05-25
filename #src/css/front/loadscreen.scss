@@ -1,0 +1,24 @@
+.loadscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 990;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: default;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .5s linear;
+	&._locked {
+		opacity: 1;
+		visibility: visible;
+	}
+	&__content {}
+	p {
+		font-size: 50px;
+	}
+}

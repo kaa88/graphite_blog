@@ -1,0 +1,72 @@
+@import "front/header";
+@import "front/footer";
+// @import "front/modal";
+// @import "front/form";
+// @import "front/select";
+// @import "front/accordion_css";
+// @import "front/accordion_js";
+// @import "front/input_checkbox";
+// @import "front/input_radio";
+// @import "front/input_range_colored";
+// @import "front/input_range_double";
+// @import "front/video_player";
+// @import "front/loadscreen";
+// @import "front/spoiler";
+// @import "front/tabs";
+// @import "front/up_button";
+// @import "front/pagination";
+
+body {
+	margin: 0 auto;
+	// max-width: $page-max-width+px;
+	font-family: Arial;
+	font-size: $font-size-default;
+	color: #222;
+	background-color: #bde;
+	&._locked {overflow: hidden;}
+
+	// Variables for JS manipulations
+	--header-height: 0px;
+	--header-offset-top: 0px;
+	--header-offset-top-default: 0px;
+	--media-mobile: #{$mobile};
+	--timer-menu: #{$timer-menu};
+	--timer-modal: #{$timer-modal};
+}
+.container {
+	width: 100%;
+	max-width: $container-width+px;
+	min-width: calc($page-min-width - (100vw - 100%));
+	margin: 0 auto;
+	padding: 0 $container-padding+px;
+}
+
+.main {
+	padding-top: calc(var(--header-height) + var(--header-offset-top-default));
+	padding-bottom: 20px;
+	// Section margins Example
+	// &__section {
+	// 	.--page-home & {margin-top: 67px;}
+	// 	.--page-about & {margin-top: 10px;}
+	// }
+}
+
+// Place other styles here
+
+
+// #wpadminbar { // test
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	height: 32px;
+// 	width: 100%;
+// 	z-index: 999;
+// 	background-color: #333;
+// 	color: white;
+// 	@media (max-width: $mobile+px) {
+// 		height: 46px;
+// 	}
+// 	@media (max-width: 500px) {
+// 		height: 50px;
+// 	}
+// }

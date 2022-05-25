@@ -1,0 +1,55 @@
+@media print {
+	* {
+		background: #fff !important;
+		color: #000 !important;
+	}
+	.container {padding: 0;}
+
+	img,
+	pre,
+	blockquote,
+	table,
+	h1, h2, h3, h4, h5, h6,
+	a {
+		page-break-inside: avoid;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+	}
+
+	.header-menu-turn-off-area,
+	.header-menu-open-btn,
+	.header-menu-close-btn,
+	.header-submenu-back-btn,
+	.header-menu-hide-wrapper,
+	.header-submenu-hide-wrapper,
+	.breadcrumbs,
+	.form,
+	.up-button,
+	.noscript-alert {
+		display: none;
+	}
+
+	.header {
+		position: relative;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		&__print-address, &__print-address-qr {
+			display: block;
+			font-family: Arial;
+			font-size: 26px;
+		}
+	}
+
+	a, a:visited {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
+}
+// Перенос строк. Применяется к блочным эл-там. В Chrome работает только с body.children
+// page-break-inside: avoid;
+// page-break-before: always;
+// page-break-after: auto;
+// auto / always / avoid / left / right

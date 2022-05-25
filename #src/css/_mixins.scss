@@ -1,0 +1,39 @@
+// Mixins (@include)
+@mixin text-nowrap() {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@mixin text-nowrap-multi($lines) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	overflow: hidden;
+}
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: local($font_name),
+			url("../fonts/#{$file_name}.woff2") format("woff2"),
+			url("../fonts/#{$file_name}.woff") format("woff"), 
+			url('../fonts/#{$file_name}.ttf') format("truetype");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
+@function rem($px, $context: 16) {
+	@return math.div($px, $context) * 1rem;
+}
+@function em($px, $context: 16) {
+	@return math.div($px, $context) * 1em;
+}
+@function vw-pct($base, $media) {
+	@return calc($base / $media * 100vw);
+	// example: width: vw-pct(300, $media-footer);
+}
+@function vw-multi($base, $media, $multiplier: 0.8) {
+	@return calc($base * $multiplier / $media * 100vw + $base * (1 - $multiplier) * 1px);
+	// example: width: vw-multi(300, $media-footer, 0.8);
+	// multiplier значения от 0 до 1 - понижающие, от 1 и выше - повышающие
+}

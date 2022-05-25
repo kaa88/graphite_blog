@@ -1,0 +1,138 @@
+<!--
+	Основы: делать этажи (с контейнером) при любом варианте.
+	Всё, что нужно скрывать, ставить во wrapper.
+	Добавить класс 'scroll-lock-item-pm' для уровней, которые скроются в меню,
+	и '...-p' для тех, которые не скроются (level--mobile).
+	
+	Схема 1 этаж:
+	header
+		turn-off
+		print-address
+		level
+			container
+				logo
+				burger
+				wrapper
+					close-btn
+					menu
+					optional elems
+
+	Схема 2+ этажа:
+	header
+		turn-off
+		print-address
+		level
+			container
+				logo
+				burger
+		wrapper
+			close-btn
+			level
+				container
+					logo copy
+					elems	
+			level
+				container
+					elems	
+
+	На этаж можно поставить копию лого, т.к. физически перенести сложно
+
+	Примеры этажей:
+		header-level--mobile
+		header-level--top
+		header-level--middle
+		header-level--bottom
+
+	Для Animated burger оставить span внутри.
+-->
+
+<header class="header">
+	<div class="header-menu-turn-off-area"></div>
+	<div class="header__print-address-qr">QR</div>
+	<div class="header__print-address">address.com</div>
+
+	<div class="header-level header-level--mobile scroll-lock-item-p">
+		<div class="container">
+
+			<div class="header-level__logo logo">
+				<a class="logo__link" href="index.html">
+					LOGO
+				</a>
+			</div>
+			<div class="header-menu-open-btn"><span>MENU</span></div>
+
+		</div>
+	</div>
+
+	<div class="header-menu-hide-wrapper">
+		<div class="header-menu-close-btn"><span>X</span></div>
+
+		<div class="header-level header-level--top scroll-lock-item-pm">
+			<div class="container">
+				<nav class="header-level__account-nav account-nav">
+					<a class="account-nav__link" href="#">Sign in</a>
+					<a class="account-nav__link" href="#">My Account</a>
+					<a class="account-nav__link" href="#">Order Status</a>
+					<a class="account-nav__link" href="#">Help</a>
+				</nav>
+			</div>
+		</div>
+
+		<div class="header-level header-level--middle scroll-lock-item-pm">
+			<div class="container">
+				<span class="header-level__search search">search</span>
+				<span class="header-level__cart cart">cart</span>
+				<span class="header-level__wishlist wishlist">wishlist</span>
+			</div>
+		</div>
+
+		<div class="header-level header-level--bottom scroll-lock-item-pm">
+			<div class="container">
+				<nav class="header-level__header-menu header-menu">
+					<ul class="header-menu__items">
+						<!-- список всех ссылок, можно сортировать скриптом в html -->
+						<li class="header-menu__item" data-name="home">
+							<a class="header-menu__link submenu-drop-link" href="index.html">Home</a>
+							<!-- submenu вставить сюда -->
+							<!-- в header-menu-link добавить класс submenu-drop-link -->
+						</li>
+						<li class="header-menu__item" data-name="products">
+							<a class="header-menu__link" href="#">Products</a>
+						</li>
+						<li class="header-menu__item" data-name="about">
+							<a class="header-menu__link" href="#">About</a>
+						</li>
+						<li class="header-menu__item" data-name="contacts">
+							<a class="header-menu__link" href="#">Contacts</a>
+						</li>
+					</ul>
+
+					<!-- submenu общий тут или вставить в каждый пункт -->
+					<div class="header-submenu-hide-wrapper">
+						<div class="header-submenu-back-btn"><span>&larr;</span></div>
+						<div class="container">
+							<nav class="header-level__header-submenu header-submenu">
+								<ul class="header-submenu__items">
+									<li class="header-submenu__item" data-name="round">
+										<a class="header-submenu__link" href="#">Round</a>
+									</li>
+									<li class="header-submenu__item" data-name="square">
+										<a class="header-submenu__link" href="#">Square</a>
+									</li>
+									<li class="header-submenu__item" data-name="triangle">
+										<a class="header-submenu__link" href="#">Triangle</a>
+									</li>
+									<li class="header-submenu__item" data-name="star">
+										<a class="header-submenu__link" href="#">Star</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+						
+				</nav>
+			</div>
+		</div>
+
+	</div>
+</header>

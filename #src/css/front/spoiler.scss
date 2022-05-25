@@ -1,0 +1,20 @@
+.spoiler {
+	overflow: hidden;
+	transition: all $timer-spoiler;
+	&__header {
+		padding: 10px;
+		font-weight: bold;
+		background-color: #aaa;
+		cursor: pointer;
+		user-select: none;
+		transition: all $timer-spoiler;
+	}
+	&__content {
+		padding: 10px;
+		background-color: #fff;
+	}
+	&._visible &__header {
+		background-color: orange;
+	}
+	&._visible &__content {}
+}

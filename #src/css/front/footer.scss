@@ -1,0 +1,18 @@
+.footer {}
+.footer-top {
+	background-color: #999;
+	&__container {}
+}
+.footer-bottom {
+	background-color: #888;
+	&__container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 40px;
+		flex-wrap: wrap;
+		text-align: center;
+	}
+	&__copy {}
+	&__author {}
+}
