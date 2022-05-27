@@ -1,0 +1,74 @@
+@@include('_head.html', {
+	'title': 'Graphite Blog',
+	'descr': 'Description',
+	'robots': 'noindex, nofollow',
+})
+<body>
+@@include('_noscript.html')
+<!-- @@include('_loadscreen.html') -->
+
+@@include('_header.html')
+<script id="header-menu-options">
+	// список пунктов меню в _header.html
+	// наличие и порядок устанавливаются в массиве 'links'
+	// 'activeLink' добавляет класс 'this-page'
+	// тег 'script' можно удалить
+	
+	// let headerMenuOptions = {
+	// 	links: ['home','products','about','contacts'],
+	// 	activeLink: 'home'
+	// }
+</script>
+
+<!-- <div id="wpadminbar">wpadminbar</div> -->
+
+<main class="main --page-home">
+
+	<div class="main__author author">
+		<div class="author__img">
+			<img src="media/img/profile-photo-s.jpg" alt="">
+		</div>
+		<div class="author__contact-links contact-links">
+			<a class="contact-links__link" href="#" title="Bitrix">
+				<i class="icon-bitrix"></i>
+			</a>
+			<a class="contact-links__link" href="#" title="Wordpress">
+				<i class="icon-wp"></i>
+			</a>
+			<a class="contact-links__link" href="#" title="Twitter">
+				<i class="icon-twitter"></i>
+			</a>
+			<a class="contact-links__link" href="#" title="link">
+				<i class="icon-link"></i>
+			</a>
+			<a class="contact-links__link" href="#" title="send">
+				<i class="icon-send"></i>
+			</a>
+			<a class="contact-links__link" href="#" title="mail">
+				<i class="icon-mail"></i>
+			</a>
+		</div>
+		<h1 class="author__title">Heading</h1>
+		<p class="author__text">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+		</p>
+	</div>
+
+</main>
+
+@@include('_footer.html')
+
+<section class="modal">
+	<!-- @@include('_modal-info.html') -->
+</section>
+
+<!-- SVG test -->
+<!-- <img style="width: 300px;" src="media/img/icon-twitter.svg"> -->
+
+<!-- @@include('_svg.html') -->
+
+<!-- <div class="template-test-block scroll-lock-item-p"><div class="container">@@include('../#templates.html')</div></div> -->
+
+@@include('_script.html')
+</body>
+</html>

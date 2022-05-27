@@ -101,8 +101,32 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow:before {
+.icon-download:before {
   content: "\e900";
+}
+
+.icon-link:before {
+  content: "\e902";
+}
+
+.icon-mail:before {
+  content: "\e903";
+}
+
+.icon-send:before {
+  content: "\e904";
+}
+
+.icon-twitter:before {
+  content: "\e905";
+}
+
+.icon-bitrix:before {
+  content: "\e901";
+}
+
+.icon-wp:before {
+  content: "\e906";
 }
 
 @font-face {
@@ -415,10 +439,10 @@ i {
 
 body {
   margin: 0 auto;
-  font-family: Arial;
+  font-family: Inter, Arial, sans-serif;
   font-size: 16px;
-  color: #222;
-  background-color: #bde;
+  color: #fff;
+  background-color: #49576D;
   --header-height: 0px;
   --header-offset-top: 0px;
   --header-offset-top-default: 0px;
@@ -433,7 +457,7 @@ body._locked {
 
 .container {
   width: 100%;
-  max-width: 1230px;
+  max-width: 1196px;
   min-width: calc(320px - (100vw - 100%));
   margin: 0 auto;
   padding: 0 15px;
@@ -442,6 +466,78 @@ body._locked {
 .main {
   padding-top: calc(var(--header-height) + var(--header-offset-top-default));
   padding-bottom: 20px;
+}
+
+.author {
+  display: grid;
+  grid-template-columns: 210px auto;
+  grid-column-gap: 40px;
+}
+
+.author__img {
+  grid-row: span 2;
+  margin-bottom: 15px;
+  width: 206px;
+  height: 206px;
+  background: -o-linear-gradient(311.15deg, #38475E -20.29%, rgba(123, 123, 123, 0) 251.32%);
+  background: linear-gradient(138.85deg, #38475E -20.29%, rgba(123, 123, 123, 0) 251.32%);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.author__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.author__contact-links {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.author__title {
+  grid-column: 2;
+  margin-bottom: 20px;
+  font-family: Gotham, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+}
+
+.author__text {
+  grid-column: 2;
+  grid-row: span 2;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.contact-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.contact-links__link,
+.contact-links__link:visited {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.contact-links__link i,
+.contact-links__link:visited i {
+  -webkit-transition: color 0.15s;
+  -o-transition: color 0.15s;
+  transition: color 0.15s;
+}
+
+.contact-links__link:hover i,
+.contact-links__link:visited:hover i {
+  color: #C3CFD8;
 }
 
 .page404 {

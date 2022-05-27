@@ -8,4 +8,5 @@ Used: New site template v3.00
 
 ### Template changes:
 - тестировалка шрифтов при их подключении, в h1 (изменения вstyle.css и globs.css)
-
+- тестировалка svg в index.html
+- вернуть html файлы в корень (и в gulpfile) чтобы работал autofilename
