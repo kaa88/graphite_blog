@@ -22,7 +22,7 @@ jsMediaQueries.init({
 	breakpoints: {
 		568: () => {},
 		782: () => {
-			header.mobileViewService(); // required by Header module
+			// header.mobileViewService(); // required by Header module
 		},
 		1228: () => {},
 	}
@@ -42,13 +42,14 @@ scrollLock.init()
 ////////////////////////////////////////////////////////////////////
 
 // Header
-@@include('front/header.js')
-header.init({
-	menu: true,
-	submenu: true,
-	hidingHeader: true,
-	elemAboveHeader: true
-})
+// @ @include('front/header.js')
+// header.init({
+// 	menu: true,
+// 	submenu: true,
+// 	hidingHeader: true,
+// 	elemAboveHeader: true
+// })
+
 
 ////////////////////////////////////////////////////////////////////
 
@@ -111,8 +112,8 @@ header.init({
 ////////////////////////////////////////////////////////////////////
 
 // Spoiler
-// @ @include('front/spoiler.js')
-// spoiler.init();
+@@include('front/spoiler.js')
+spoiler.init();
 
 ////////////////////////////////////////////////////////////////////
 

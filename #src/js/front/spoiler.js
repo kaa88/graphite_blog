@@ -2,11 +2,15 @@ const spoiler = {
 	init: function() {
 		this.elems = document.querySelectorAll('.spoiler');
 		if (this.elems.length == 0) return;
-		for (let i = 0; i < this.elems.length; i++) {
-			this.elems[i].children[0].addEventListener('click', this.toggle.bind(this));
-		}
 		this.calcHeight();
-		window.addEventListener('resize', this.calcHeight.bind(this));
+		let that = this;
+		window.addEventListener('load', () => {
+			for (let i = 0; i < that.elems.length; i++) {
+				that.elems[i].children[0].addEventListener('click', that.toggle.bind(that));
+			}
+			that.calcHeight(); // recalc in case fonts are not loaded yet, so the height might be wrong
+			window.addEventListener('resize', that.calcHeight.bind(that));
+		})
 	},
 	calcHeight: function() {
 		let changes = false;

@@ -8,6 +8,7 @@ const load = {
 	// libs: true,
 	// media: true,
 }
+const scriptsPrefix = 'website.';
 
 /////////////////////////////////////////////////////////////////
 
@@ -127,7 +128,10 @@ function css() {
 			overrideBrowserslist: ['last 5 versions'],
 			cascade: true
 		}))
-		.pipe(css_media_queries());
+		.pipe(css_media_queries())
+		.pipe(rename({
+			basename: scriptsPrefix + 'style'
+		}));
 
 	if (!isLiteBuild)
 		stream = stream
@@ -144,7 +148,10 @@ function css() {
 
 function js() {
 	let stream = src(path.src.js)
-		.pipe(fileinclude());
+		.pipe(fileinclude())
+		.pipe(rename({
+			basename: scriptsPrefix + 'script'
+		}));
 
 	if (!isLiteBuild)
 		stream = stream

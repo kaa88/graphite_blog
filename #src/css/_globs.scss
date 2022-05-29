@@ -1,14 +1,22 @@
-.g-h1 {
-	font-size: 40px;
-	line-height: 3;
-	text-align: center;
+// .g-h1 {
+// 	font-size: 40px;
+// 	line-height: 3;
+// 	text-align: center;
+// }
+// .g-h2 {}
+// .g-h3 {}
+// .g-h4 {}
+// .g-text {}
+.g-button, .g-button:visited {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 44px;
+	width: 169px;
+	background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
+	border-radius: 12px;
 }
-.g-h2 {}
-.g-h3 {}
-.g-h4 {}
-.g-text {}
-.g-button, .g-button:visited {}
-.g-link, .g-link:visited {}
+// .g-link, .g-link:visited {}
 
 
 // Image loader
