@@ -58,31 +58,51 @@ body {
 	// }
 	&__container {
 		display: grid;
-		grid-template-columns: 51.1% 44.25%;
 		justify-content: space-between;
+		@media (min-width: $mobile+1+px) {
+			grid-template-columns: 51.1% 44.25%;
 		}
+	}
 	&__author {
 		grid-row: span 2;
 	}
-	&__controls {}
+	&__controls {
+		@media (max-width: $mobile+px) {
+			margin: 0 auto;
+		}
+	}
 	&__dropdown {
-		grid-column: 2;
 		height: 88px;
+		@media (min-width: $mobile+1+px) {
+			grid-column: 2;
+		}
+		@media (max-width: $mobile+px) {
+			margin-top: 24px;
+		}
 	}
 	&__article-box {
 		margin-top: 33px;
+		@media (max-width: $mobile+px) {
+			margin-top: 24px;
+		}
 	}
-	&__card-box {}
+	&__card-box {
+		@media (max-width: $mobile+px) {
+			margin-top: 24px;
+		}
+	}
 }
 
 .author {
 	display: grid;
 	grid-template-columns: 210px auto;
-	grid-template-rows: 72px 159px;
-	grid-column-gap: 40px;
+	// grid-template-rows: 72px 159px;
+	grid-template-rows: auto auto 1fr;
+	// grid-column-gap: 40px;
+	grid-column-gap: 6.71%;
 	&__img {
-		grid-row: span 2;
-		margin-bottom: 15px;
+		// grid-row: span 2;
+		// margin-bottom: 15px;
 		width: 206px;
 		height: 206px;
 		background: linear-gradient(138.85deg, #404d62, #4f5a6b); 
@@ -93,32 +113,58 @@ body {
 			height: 100%;
 			object-fit: cover;
 		}
+		// @media (max-width: $mobile+px) {
+		// 	margin-bottom: 24px;
+		// }
 	}
 	&__contact-links {
-		grid-column: 1;
-		grid-row: 3;
+		margin-top: 15px;
+		@media (max-width: $mobile+px) {
+			margin-top: 24px;
+			margin-bottom: 24px;
+		}
+		@media (max-width: $mobile-s+px) {
+			grid-column: span 2;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+	&__info {
+		@media (min-width: $mobile+1+px) {
+			grid-row: span 2;
+		}
 	}
 	&__title {
-		grid-column: 2;
-		// margin-bottom: 20px;
+		// grid-column: 2;
+		margin-bottom: 20px;
 		font-family: $font-1;
 		font-weight: 700;
 		font-size: 48px;
 		line-height: 1;
+		@media (max-width: $mobile-s+px) {
+			font-size: 24px;
+		}
 	}
 	&__text {
-		@include text-nowrap-multi(12);
+		@include text-nowrap-multi(8);
 		grid-column: 2;
 		grid-row: span 2;
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 150%;
+		@media (max-width: $mobile-s+px) {
+			font-size: 12px;
+		}
 	}
 }
 
 .contact-links {
 	display: flex;
 	justify-content: space-between;
+	@media (max-width: $mobile-s+px) {
+		width: 100%;
+		max-width: 450px;
+	}
 	&__link, &__link:visited {
 		display: inline-block;
 		font-size: 24px;
@@ -132,21 +178,48 @@ body {
 }
 
 .controls {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-column-gap: 4.854%;
+	grid-row-gap: 12px;
 	justify-content: flex-end;
-	& > * {
-		// margin-left: 25px;
-		margin-left: 4.854%;
-		flex-shrink: 0;
+	@media (max-width: $mobile+px) {
+		width: 100%;
+		// max-width: 600px;
+		grid-template-columns: 1fr repeat(3, auto);
+		justify-content: space-between;
+		grid-column-gap: 2%;
+	}
+	@media (max-width: $mobile-s+px) {
+		max-width: 450px;
+		grid-template-columns: minmax(auto, 222px) repeat(2, auto);
+		grid-column-gap: 10px;
 	}
 	&__button {
 		i {
 			margin-right: 7px;
 			font-size: 24px;
+			@media (max-width: $mobile-s+px) {
+				margin-right: 10px;
+				font-size: 20px;
+			}
+		}
+		&--download {
+			@media (max-width: $mobile+px) {
+				width: 100%;
+				max-width: 1000px;
+			}
+			@media (max-width: $mobile-s+px) {
+				grid-column: 1 / -1;
+			}
 		}
 		&--contact {
 			@media (min-width: $mobile+1+px) {
 				display: none;
+			}
+			@media (max-width: $mobile-s+px) {
+				width: 100%;
+				max-width: 222px;
 			}
 		}
 	}
@@ -168,6 +241,9 @@ body {
 			background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
 			border-radius: 12px;
 			border: 4px solid transparent;
+			@media (max-width: $mobile-s+px) {
+				font-size: 12px;
+			}
 			&:not(._inactive) {
 				border-radius: 12px;
 				border-color: #556072;
@@ -189,6 +265,9 @@ body {
 		height: 44px;
 		overflow: hidden;
 		position: relative;
+		@media (max-width: $mobile+px) {
+			order: 4;
+		}
 		label {
 			display: inline-block;
 			width: 100%;
