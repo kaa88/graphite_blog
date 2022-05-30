@@ -13,8 +13,14 @@
 	align-items: center;
 	height: 44px;
 	width: 169px;
+	white-space: nowrap;
 	background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
 	border-radius: 12px;
+	transition: color $timer-hover, box-shadow $timer-hover;
+	&:hover {
+		box-shadow: inset 0 1px 3px 0 #444;
+		color: #ccc;
+	}
 }
 // .g-link, .g-link:visited {}
 
