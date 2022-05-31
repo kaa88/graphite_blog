@@ -19,6 +19,9 @@
 		cursor: pointer;
 		user-select: none;
 		transition: all $timer-spoiler;
+		@media (max-width: $mobile+px) {
+			padding: 6px;
+		}
 	}
 	&__header-inner {
 		padding: 0 24px;
@@ -28,7 +31,10 @@
 		align-items: center;
 		border-radius: 8px;
 		transition: background-color $timer-spoiler;
-		i {
+		@media (max-width: $mobile+px) {
+			height: 48px;
+		}
+	i {
 			font-size: 7px;
 			transition: transform $timer-spoiler
 		}
@@ -44,6 +50,9 @@
 		font-weight: 500;
 		font-size: 12px;
 		line-height: 150%;
+		@media (max-width: $mobile+px) {
+			padding: 3px 20px 30px 30px;
+		}
 		p {
 			padding-right: 10px;
 			max-height: 500px;
@@ -61,6 +70,9 @@
 			}
 			scrollbar-width: thin;
 			scrollbar-color: #556072 transparent;
+			@media (max-width: $mobile+px) {
+				max-height: calc(100vh - 140px);
+			}
 		}
 	}
 	&._visible &__header {

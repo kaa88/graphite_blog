@@ -47,9 +47,9 @@ const $baseDir = {
 	img: $source + '/media/img/',
 	fonts: $source + '/fonts/',
 }
-const $project = isLiteBuild ? 'dist_light_build' : 'dist';
+const $project = isLiteBuild ? 'dist_light' : 'dist';
 const path = {
-	clean: ['./dist_light_build/', './dist/'],
+	clean: ['./dist_light/', './dist/'],
 	watch: {
 		html: $source + '/**/*.html',
 		css: $baseDir.css + '**/*.scss',

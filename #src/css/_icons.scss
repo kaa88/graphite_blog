@@ -20,7 +20,13 @@ i {
 	-moz-osx-font-smoothing: grayscale;
 }
 // Icons' codes
-.icon-arrow:before {
+.icon-arrow-2:before {
+	content: "\e908";
+ }
+ .icon-cross:before {
+	content: "\e909";
+ }
+ .icon-arrow:before {
 	content: "\e907";
  }
  .icon-download:before {
@@ -44,4 +50,6 @@ i {
  .icon-wp:before {
 	content: "\e906";
  }
-	
+ .icon-menu:before {
+	content: "\e9bd";
+ }

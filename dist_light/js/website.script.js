@@ -203,6 +203,67 @@ const transitionLock = {
 
 ////////////////////////////////////////////////////////////////////
 
+// Popup
+/*	
+	Init params {obj}:
+	- elem - element name (default = 'popup')
+*/
+class Popup {
+	constructor(params = {}) {
+		this.elemName = params.elem || 'popup';
+		this.elem = document.querySelector('.' + this.elemName);
+		if (!this.elem) return;
+
+		this.isLoaded = true;
+
+		let closeBtn = this.elem.querySelector('.popup__close-btn');
+		if (closeBtn) closeBtn.addEventListener('click', this.close.bind(this));
+	}
+	open() {
+		if (this.isLoaded)
+			this.elem.classList.add('_visible');
+	}
+	close() {
+		if (this.isLoaded)
+			this.elem.classList.remove('_visible');
+	}
+}
+let test_popup = new Popup({
+	// elem: 'test-popup'
+});
+// Place each popup's code below
+const cookieAlert = {
+	popup: test_popup,
+	aboutLink: document.querySelector('.cookie-alert__link'),
+	closeButton: document.querySelector('.cookie-alert__close'),
+	acceptButton: document.querySelector('.cookie-alert__accept'),
+}
+cookieAlert.init = function() {
+	this.popup.open();
+	if (this.aboutLink) {
+		this.aboutLink.addEventListener('click', function() {
+			this.closest('.cookie-alert').classList.add('_opened');
+		})
+	}
+	if (this.closeButton) {
+		this.closeButton.addEventListener('click', () => {
+			this.popup.close();
+		})
+	}
+	if (this.acceptButton) {
+		this.acceptButton.addEventListener('click', function() {
+			console.log('accept')
+		})
+	}
+}
+window.addEventListener('load', () => {
+	setTimeout(() => {
+		cookieAlert.init();
+	}, 2000);
+})
+
+////////////////////////////////////////////////////////////////////
+
 // Select
 // @ @include('front/select.js')
 // const form_select = new Select({

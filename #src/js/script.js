@@ -59,6 +59,44 @@ scrollLock.init()
 
 ////////////////////////////////////////////////////////////////////
 
+// Popup
+@@include('front/popup.js')
+let test_popup = new Popup({
+	// elem: 'test-popup'
+});
+// Place each popup's code below
+const cookieAlert = {
+	popup: test_popup,
+	aboutLink: document.querySelector('.cookie-alert__link'),
+	closeButton: document.querySelector('.cookie-alert__close'),
+	acceptButton: document.querySelector('.cookie-alert__accept'),
+}
+cookieAlert.init = function() {
+	this.popup.open();
+	if (this.aboutLink) {
+		this.aboutLink.addEventListener('click', function() {
+			this.closest('.cookie-alert').classList.add('_opened');
+		})
+	}
+	if (this.closeButton) {
+		this.closeButton.addEventListener('click', () => {
+			this.popup.close();
+		})
+	}
+	if (this.acceptButton) {
+		this.acceptButton.addEventListener('click', function() {
+			console.log('accept')
+		})
+	}
+}
+window.addEventListener('load', () => {
+	setTimeout(() => {
+		cookieAlert.init();
+	}, 2000);
+})
+
+////////////////////////////////////////////////////////////////////
+
 // Select
 // @ @include('front/select.js')
 // const form_select = new Select({

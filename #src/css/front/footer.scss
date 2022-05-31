@@ -1,6 +1,14 @@
 .footer {
 	margin-top: 50px;
 	margin-bottom: 60px;
+	@media (max-width: $mobile+px) {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	@media (max-width: $mobile-s+px) {
+		margin-top: 24px;
+		margin-bottom: 24px;
+	}
 	&__copy {
 		font-family: $font-1;
 		font-size: 16px;
