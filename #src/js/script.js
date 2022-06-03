@@ -239,3 +239,16 @@ spoiler.init();
 // @ @include('back/json_load.js')
 
 ////////////////////////////////////////////////////////////////////
+
+// Cookies
+
+document.cookies = 'theme=dark; path=/;'
+console.log(document.cookies);
+
+function cookieParse(params) {
+	
+}
+const cookies = {
+
+}
+console.log(cookies)

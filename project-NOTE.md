@@ -14,3 +14,4 @@ Used: New site template v3.00
 - spoiler неправильно просчитывал размер контента при загрузке, если еще не подгружен шрифт, добавлена отложенная загрузка (spoiler.js)... проверить возможно в аккордионе то же
 - dist_light_build переименовал в dist_light (gulpfile) для простоты
 - popup module (html css js)
+- уменьшить кол-во ////// в script.js
