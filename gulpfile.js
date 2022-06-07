@@ -64,7 +64,7 @@ const path = {
 	src: {
 		html: [$baseDir.html + '**/*.html', '!' + $baseDir.html + '**/[_#]*.html'],
 		css: $baseDir.css + '*style.scss',
-		js: $baseDir.js + '*script.js',
+		js: $baseDir.js + '*.js',
 		data: $baseDir.data + '**/*',
 		service: [$baseDir.service + '**/*', $baseDir.service + '.htaccess'],
 		libs: $baseDir.libs + '**/*',
@@ -130,7 +130,7 @@ function css() {
 		}))
 		.pipe(css_media_queries())
 		.pipe(rename({
-			basename: scriptsPrefix + 'style'
+			prefix: scriptsPrefix
 		}));
 
 	if (!isLiteBuild)
@@ -150,7 +150,7 @@ function js() {
 	let stream = src(path.src.js)
 		.pipe(fileinclude())
 		.pipe(rename({
-			basename: scriptsPrefix + 'script'
+			prefix: scriptsPrefix
 		}));
 
 	if (!isLiteBuild)

@@ -1,11 +1,94 @@
 // Hello World!
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
+
+// Cookies
+// Example: 
+// setCookie({
+// 		name: '_cookies', // required
+// 		value: 'true', // required
+// 		expires: 30, // expire time in days (can be negative to delete cookie)
+// 		// *any other supported params*
+// 	},
+// 	true // log formatted cookie string in console
+// );
+
+function setCookie(params = {}, log) {
+	if (!params.name || !params.value) return console.log('Error: Required cookie "name" or "value" is missing.');
+
+	let cookieArr = [];
+	cookieArr.push(encodeURIComponent(params.name) + '=' +  encodeURIComponent(params.value));
+
+	if (params.expires) {
+		let d = new Date();
+		d.setTime(d.getTime() + (params.expires*24*60*60*1000));
+		cookieArr.push('expires=' + d.toUTCString());
+	}
+
+	let entries = Object.entries(params);
+	for (let i = 0; i < entries.length; i++) {
+		if (entries[i][0] == 'name' || entries[i][0] == 'value' || entries[i][0] == 'expires') continue;
+		cookieArr.push(entries[i][0] + (entries[i][1] ? ('=' + entries[i][1]) : ''));
+	}
+
+	let cookieStr = cookieArr.join('; ');
+	document.cookie = cookieStr;
+	if (log) console.log('Setting up cookie: ' + cookieStr);
+}
+
+function getCookie() {
+	let cookiesArr = decodeURIComponent(document.cookie).split('; '),
+		cookiesObj = {};
+	for (let i = 0; i < cookiesArr.length; i++) {
+		let split = cookiesArr[i].split('=');
+		cookiesObj[split[0]] = split[1];
+	}
+	return cookiesObj;
+}
+
+let cookies = getCookie();
+console.log(cookies);
+
+//////////////////////////////////////////////
+
+// Theme & Lang
+let pageOptions = {
+	themePrefix: 'theme-',
+	themeName: 'dark',
+	langPrefix: 'lang-',
+	langName: 'ru',
+	setOpt: function(param) {
+		if (!param) return;
+		document.body.classList.toggle(param);
+	},
+};
+console.log(pageOptions)
+
+if (cookies) {
+	if (cookies.theme) pageOptions.setOpt(pageOptions.themePrefix + cookies.theme);
+	if (cookies.lang) pageOptions.setOpt(pageOptions.langPrefix + cookies.lang);
+}
+
+function setupControls() {
+	let themeBtn = document.querySelector('.controls__theme');
+	if (themeBtn) themeBtn.addEventListener('click', () => {
+		if (transitionLock.check(1000)) return;
+		pageOptions.setOpt(pageOptions.themePrefix + pageOptions.themeName);
+	})
+	let langBtn = document.querySelector('.controls__lang');
+	if (langBtn) langBtn.addEventListener('click', () => {
+		if (transitionLock.check(1000)) return;
+		pageOptions.setOpt(pageOptions.langPrefix + pageOptions.langName);
+	})
+}
+setupControls();
+
+//////////////////////////////////////////////
 
 // Random
 // @ @include('front/random.js')
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Loadscreen
 // @ @include('front/loadscreen.js')
@@ -14,7 +97,7 @@
 // 	scrollToTop: true
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // JS Media Queries
 /* 
@@ -66,7 +149,7 @@ jsMediaQueries.init({
 	}
 })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Scroll lock
 /* 
@@ -161,7 +244,7 @@ const scrollLock = {
 }
 scrollLock.init()
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Transition lock
 /* 
@@ -173,7 +256,7 @@ const transitionLock = {
 	check: function(timeout = 0) {
 		let that = this,
 		    result = this.locked;
-		if (that.locked == false) {
+			 if (that.locked == false) {
 			that.locked = true;
 			setTimeout(function(){
 				that.locked = false;
@@ -183,7 +266,7 @@ const transitionLock = {
 	}
 }
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Header
 // @ @include('front/header.js')
@@ -195,13 +278,13 @@ const transitionLock = {
 // })
 
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Modal window
 // @ @include('front/modal.js')
 // modal.init()
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Popup
 /*	
@@ -239,7 +322,9 @@ const cookieAlert = {
 	acceptButton: document.querySelector('.cookie-alert__accept'),
 }
 cookieAlert.init = function() {
-	this.popup.open();
+	if (cookies && cookies.cookies_accepted != 'true') {
+		this.popup.open();
+	}
 	if (this.aboutLink) {
 		this.aboutLink.addEventListener('click', function() {
 			this.closest('.cookie-alert').classList.add('_opened');
@@ -251,8 +336,23 @@ cookieAlert.init = function() {
 		})
 	}
 	if (this.acceptButton) {
-		this.acceptButton.addEventListener('click', function() {
-			console.log('accept')
+		this.acceptButton.addEventListener('click', () => {
+			setCookie({
+				name: 'cookies_accepted',
+				value: 'true',
+				expires: 365
+			});
+			// setCookie({
+			// 	name: 'lang',
+			// 	value: 'en',
+			// 	expires: 365
+			// });
+			// setCookie({
+			// 	name: 'theme',
+			// 	value: 'light',
+			// 	expires: 365
+			// });
+			this.popup.close();
 		})
 	}
 }
@@ -262,7 +362,7 @@ window.addEventListener('load', () => {
 	}, 2000);
 })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Select
 // @ @include('front/select.js')
@@ -272,7 +372,7 @@ window.addEventListener('load', () => {
 // 	onselect: (selection) => {console.log(selection)}
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Accordion
 // @ @include('front/accordion_js.js')
@@ -281,7 +381,7 @@ window.addEventListener('load', () => {
 // 	isOpened: true
 // });
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Simple counter
 // @ @include('front/simple_counter.js')
@@ -293,7 +393,7 @@ window.addEventListener('load', () => {
 // })
 // simpleCounter.start()
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Input range colored
 // @ @include('front/input_range_colored.js')
@@ -301,7 +401,7 @@ window.addEventListener('load', () => {
 // 	elem: 'input-range'
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Input range double
 // @ @include('front/input_range_double.js')
@@ -314,7 +414,7 @@ window.addEventListener('load', () => {
 // 	results: ['form__ir-result1', 'form__ir-result2']
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Spoiler
 const spoiler = {
@@ -358,23 +458,23 @@ const spoiler = {
 }
 spoiler.init();
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Tabs
 // @ @include('front/tabs.js')
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Up-button
 // @ @include('front/up_button.js')
 // upButton.init();
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Intersection
 // @ @include('front/intersection.js')
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Parallax
 // @ @include('front/parallax.js')
@@ -385,7 +485,7 @@ spoiler.init();
 // 	distance: 30,
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Pagination
 // @ @include('front/pagination.js')
@@ -394,13 +494,13 @@ spoiler.init();
 // 	maxLength: 8,
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Video player
 // @ @include('front/video_player.js')
 // videoPlayer.init(80);
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Swiper
 // const swiper = new Swiper('.banner__swiper', {
@@ -426,34 +526,21 @@ spoiler.init();
 // 	},
 // })
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Print version QR-code
 // @ @include('front/qr_code.js')
 // printQRcode();
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // Send form to email
 // @ @include('back/form_to_email.js')
 // formToEmail.init(true);
 
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////
 
 // JSON Load
 // @ @include('back/json_load.js')
 
-////////////////////////////////////////////////////////////////////
-
-// Cookies
-
-document.cookies = 'theme=dark; path=/;'
-console.log(document.cookies);
-
-function cookieParse(params) {
-	
-}
-const cookies = {
-
-}
-console.log(cookies)
+//////////////////////////////////////////////

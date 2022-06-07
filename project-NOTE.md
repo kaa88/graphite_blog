@@ -7,7 +7,7 @@ Used: New site template v3.00
 
 
 ### Template changes:
-- тестировалка шрифтов при их подключении, в h1 (изменения вstyle.css и globs.css)
+- тестировалка шрифтов при их подключении, в h1 (изменения в style.css и globs.css)
 - тестировалка svg в index.html
 - вернуть html файлы в корень (и в gulpfile) чтобы работал autofilename
 - названия style script менять в gulpfile (добавлена переменная с префиксом)
@@ -15,3 +15,4 @@ Used: New site template v3.00
 - dist_light_build переименовал в dist_light (gulpfile) для простоты
 - popup module (html css js)
 - уменьшить кол-во ////// в script.js
+- cookies.js
