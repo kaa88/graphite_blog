@@ -3,7 +3,8 @@ Used: New site template v3.00
 # Project NOTE
 
 ### TO DO:
-
+- исправить кривой рендер в углах фото
+- переделать спойлер, чтобы не менял высоту главного окна, а как-то по-другому
 
 
 ### Template changes:
@@ -16,3 +17,4 @@ Used: New site template v3.00
 - popup module (html css js)
 - уменьшить кол-во ////// в script.js
 - cookies.js
+- loadscreen.scss в стиль текста добавить family sans-serif, чтобы не прыгал шрифт во время загрузки, загрузочный спиннер

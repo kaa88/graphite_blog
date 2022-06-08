@@ -3,13 +3,21 @@
 	// width: 507px;
 	border: 4px solid transparent;
 	border-radius: 16px;
-	background-color: $color-4;
+	background-color: $color-6;
 	overflow: hidden;
-	transition: all $timer-spoiler;
+	// transition: all $timer-spoiler;
+	transition: height $timer-spoiler, border-color $timer-hover,background-color $timer-theme;
 	position: relative;
 	z-index: 2;
+	.theme-dark & {
+		background-color: $color-4;
+	}
 	&._visible {
-		border-color: #556072;
+		// border-color: rgba(255, 255, 255, 0.1);
+		border-color: $color-10;
+		.theme-dark & {
+			border-color: $color-9;
+		}
 	}
 	&__header {
 		// margin: 0 12px;
@@ -34,7 +42,7 @@
 		@media (max-width: $mobile+px) {
 			height: 48px;
 		}
-	i {
+		i {
 			font-size: 7px;
 			transition: transform $timer-spoiler
 		}
@@ -65,11 +73,17 @@
 				border-radius: 5px;
 			}
 			&::-webkit-scrollbar-thumb {
-				background: #556072;
+				background: $color-10;
 				border-radius: 5px;
+				.theme-dark & {
+					border-color: $color-9;
+				}
 			}
 			scrollbar-width: thin;
-			scrollbar-color: #556072 transparent;
+			scrollbar-color: $color-10 transparent;
+			.theme-dark & {
+				scrollbar-color: $color-9 transparent;
+			}
 			@media (max-width: $mobile+px) {
 				max-height: calc(100vh - 140px);
 			}

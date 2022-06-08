@@ -55,6 +55,7 @@ console.log(cookies);
 let pageOptions = {
 	themePrefix: 'theme-',
 	themeName: 'dark',
+	themeTimer: 1000,
 	langPrefix: 'lang-',
 	langName: 'ru',
 	setOpt: function(param) {
@@ -72,14 +73,35 @@ if (cookies) {
 function setupControls() {
 	let themeBtn = document.querySelector('.controls__theme');
 	if (themeBtn) themeBtn.addEventListener('click', () => {
-		if (transitionLock.check(1000)) return;
+		if (transitionLock.check(pageOptions.themeTimer)) return;
 		pageOptions.setOpt(pageOptions.themePrefix + pageOptions.themeName);
+		if (cookies && cookies.cookies_accepted) {
+			if (document.body.classList.contains('theme-dark')) {
+				setCookie({
+					name: 'theme',
+					value: pageOptions.themeName,
+					expires: 365
+				});
+			}
+			else {
+				setCookie({
+					name: 'theme',
+					value: pageOptions.themeName,
+					expires: -1
+				});
+			}
+		}
 	})
 	let langBtn = document.querySelector('.controls__lang');
 	if (langBtn) langBtn.addEventListener('click', () => {
 		if (transitionLock.check(1000)) return;
 		pageOptions.setOpt(pageOptions.langPrefix + pageOptions.langName);
-	})
+			// setCookie({
+			// 	name: 'lang',
+			// 	value: 'en',
+			// 	expires: 365
+			// });
+		})
 }
 setupControls();
 
@@ -91,11 +113,30 @@ setupControls();
 //////////////////////////////////////////////
 
 // Loadscreen
-// @ @include('front/loadscreen.js')
-// loadscreen.init({
-// 	timeout: 1000,
-// 	scrollToTop: true
-// })
+/*
+	Init params {obj}:
+	- timeout - timeout between document is loaded and loadscreen begins to fade (default = 0)
+	- scrollToTop - force scroll document to top on page reload (default = false)
+*/
+const loadscreen = {
+	init: function(params = {}) {
+		this.elem = document.querySelector('.loadscreen');
+		if (!this.elem) return;
+		let that = this;
+		document.body.classList.add('_locked');
+		window.addEventListener('load', () => {
+			setTimeout(() => {
+				document.body.classList.remove('_locked');
+				if (params.scrollToTop) window.scrollTo({top: 0, behavior: 'instant'});
+				that.elem.classList.remove('_locked');
+			}, params.timeout || 0)
+		})
+	}
+}
+loadscreen.init({
+	timeout: 1000,
+	// scrollToTop: true
+})
 
 //////////////////////////////////////////////
 
@@ -342,16 +383,6 @@ cookieAlert.init = function() {
 				value: 'true',
 				expires: 365
 			});
-			// setCookie({
-			// 	name: 'lang',
-			// 	value: 'en',
-			// 	expires: 365
-			// });
-			// setCookie({
-			// 	name: 'theme',
-			// 	value: 'light',
-			// 	expires: 365
-			// });
 			this.popup.close();
 		})
 	}

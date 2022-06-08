@@ -10,7 +10,7 @@
 // @import "front/input_range_colored";
 // @import "front/input_range_double";
 // @import "front/video_player";
-// @import "front/loadscreen";
+@import "front/loadscreen";
 @import "front/spoiler";
 // @import "front/tabs";
 // @import "front/up_button";
@@ -23,8 +23,9 @@ body {
 	font-family: $font-2;
 	font-weight: 500;
 	font-size: $font-size-default;
-	color: $color-2;
-	background-color: $color-3;
+	color: $color-4;
+	background-color: $color-5;
+	transition: color $timer-theme, background-color $timer-theme;
 
 	&._locked {
 		overflow: hidden;
@@ -38,7 +39,10 @@ body {
 	--timer-menu: #{$timer-menu};
 	--timer-modal: #{$timer-modal};
 
-	.theme-light {}
+	&.theme-dark {
+		color: $color-2;
+		background-color: $color-3;
+	}
 }
 
 .container {
@@ -121,7 +125,8 @@ body {
 &__img {
 		// width: 206px;
 		height: 0px;
-		background: linear-gradient(138.85deg, #404d62, #4f5a6b); 
+		// background: linear-gradient(138.85deg, #404d62, #4f5a6b); 
+		background: linear-gradient(138.85deg, #38475E -20.29%, rgba(255, 255, 255, 0.2) 251.32%);
 		border-radius: 24px;
 		overflow: hidden;
 		// img {
@@ -132,6 +137,21 @@ body {
 		width: 100%;
 		padding-bottom: 100%;
 		position: relative;
+		// &:before {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	display: inline-block;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	background: linear-gradient(138.85deg, #404d62, #4f5a6b);
+		// 	opacity: 0;
+		// 	transition: opacity $timer-theme;
+		// 	.theme-dark & {
+		// 		opacity: 1;
+		// 	}
+		// }
 		img {
 			position: absolute;
 			top: 0;
@@ -259,48 +279,78 @@ body {
 		display: flex;
 		width: 121px;
 		height: 44px;
+		padding: 4px;
 		background-color: rgba(0, 0, 0, 0.1);
 		border-radius: 16px;
 		label {
 			display: inline-flex;
 			justify-content: center;
 			align-items: center;
-			height: 44px;
+			// margin-top: 4px;
+			height: 36px;//44
 			width: 169px;
 			background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
 			border-radius: 12px;
-			border: 4px solid transparent;
+			// border: 4px solid transparent;
+			outline: solid 4px transparent;
+			&:first-of-type {
+				margin-right: 8px;
+			}
 			@media (max-width: $mobile-s+px) {
 				font-size: 12px;
 			}
 			&:not(._inactive) {
+				color: $color-2;
 				border-radius: 12px;
-				border-color: #556072;
+				// border-color: #c7d0d7;
+				outline-color: rgba(0,0,0,0.1);
+				transition: outline-color $timer-theme;
+				.theme-dark & {
+					outline-color: rgba(255,255,255,0.1);
+				}
 			}
 			&._inactive {
 				background: none;
 				transition: border-color $timer-hover,  text-shadow $timer-hover;
 				cursor: pointer;
 				&:hover {
-					text-shadow: 0 0 5px rgba(255,255,255,0.7);
-					border-color: #556072;
+					text-shadow: 0 0 5px rgba(0,0,0,0.6);
+					// outline-color: rgba(0,0,0,0.1);
+					.theme-dark & {
+						text-shadow: 0 0 5px rgba(255,255,255,0.7);
+						// outline-color: rgba(255,255,255,0.1);
+					}
 				}
 			}
 		}
 	}
 	&__theme {
 		display: inline-block;
-		width: 44px;
-		height: 44px;
+		width: 36px;
+		height: 36px;
+		margin-top: 4px;
+		margin-left: 4px;
 		overflow: hidden;
 		position: relative;
-		border: 4px solid #556072;
-		border-radius: 50%;
-		background-color: $color-8;
-		transition: border-color .3s, background-color .3s;
 		cursor: pointer;
-		&:hover {
-			background-color: $color-4;
+		outline: 4px solid rgba(0, 0, 0, 0.1);
+		border-radius: 50%;
+		background-color: $color-3;
+		transition: outline-color $timer-theme, background-color $timer-theme;
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
+			opacity: 0;
+			transition: opacity $timer-hover;
+		}
+		&:hover:before {
+			opacity: 1;
 		}
 		span {
 			position: absolute;
@@ -311,32 +361,89 @@ body {
 			height: 22px;
 			border-radius: 50%;
 			overflow: hidden;
-			&:before {
+			&:before, &:after {
 				content: '';
 				position: absolute;
 				top: 0;
-				left: 0;
 				display: inline-block;
-				width: 44px;
+				width: 50%;
 				height: 100%;
-				background-image: linear-gradient(to right, transparent 11px, #C7E3F6 11px, #C7E3F6 33px, transparent 33px);
-				transition: left .3s;
+				transition: all $timer-theme;
+			}
+			&:before {
+				left: 0;
+				background-color: $color-5;
+			}
+			&:after {
+				right: 0;
+				background-color: transparent;
 			}
 		}
 		.theme-dark & {
-			background-color: $color-4;
-			border-color: $color-5;
-			&:hover {
-				background-color: $color-8;
-			}
-			span:before {
-				left: -22px;
+			background-color: $color-5;
+			outline-color: rgba(255, 255, 255, 0.1);
+			span {
+				&:before {
+					background-color: transparent;
+				}
+				&:after {
+					background-color: $color-3;
+				}
 			}
 		}
 		@media (max-width: $mobile+px) {
 			order: 4;
 		}
 	}
+	// &__theme {
+	// 	display: inline-block;
+	// 	width: 44px;
+	// 	height: 44px;
+	// 	overflow: hidden;
+	// 	position: relative;
+	// 	border: 4px solid #556072;
+	// 	border-radius: 50%;
+	// 	background-color: $color-8;
+	// 	transition: border-color $timer-theme, background-color $timer-theme;
+	// 	cursor: pointer;
+	// 	&:hover {
+	// 		background-color: $color-4;
+	// 	}
+	// 	span {
+	// 		position: absolute;
+	// 		top: calc(50% - 11px);
+	// 		left: calc(50% - 11px);
+	// 		display: inline-block;
+	// 		width: 22px;
+	// 		height: 22px;
+	// 		border-radius: 50%;
+	// 		overflow: hidden;
+	// 		&:before {
+	// 			content: '';
+	// 			position: absolute;
+	// 			top: 0;
+	// 			left: 0;
+	// 			display: inline-block;
+	// 			width: 44px;
+	// 			height: 100%;
+	// 			background-image: linear-gradient(to right, transparent 11px, #C7E3F6 11px, #C7E3F6 33px, transparent 33px);
+	// 			transition: left $timer-theme;
+	// 		}
+	// 	}
+	// 	.theme-dark & {
+	// 		background-color: $color-4;
+	// 		border-color: $color-5;
+	// 		&:hover {
+	// 			background-color: $color-8;
+	// 		}
+	// 		span:before {
+	// 			left: -22px;
+	// 		}
+	// 	}
+	// 	@media (max-width: $mobile+px) {
+	// 		order: 4;
+	// 	}
+	// }
 }
 
 .article-box {
@@ -357,14 +464,20 @@ body {
 	grid-template-columns: 93px auto;
 	grid-column-gap: 5.369%;//32
 	border-radius: 16px;
-	background-color: $color-4;
+	background-color: $color-6;
 	border: 4px solid transparent;
-	transition: all $timer-hover;
+	transition: border-color $timer-hover,background-color $timer-theme;
+	.theme-dark & {
+		background-color: $color-4;
+	}
 	@media (max-width: $mobile-s+px) {
 		padding: 12px;
 	}
 	&:hover {
-		border-color: #556072;
+		border-color: $color-10;
+		.theme-dark & {
+			border-color: $color-9;
+		}
 	}
 	&__img {
 		// grid-row: span 2;
@@ -372,11 +485,27 @@ body {
 		height: 93px;
 		border-radius: 24px;
 		overflow: hidden;
-		background: linear-gradient(138.85deg, #3b495e, #404e61);
+		position: relative;
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(138.85deg, #38475E -20.29%, rgba(255, 255, 255, 0.2) 251.32%);
+			opacity: 0.5;
+			transition: opacity $timer-theme;
+			// .theme-dark & {
+			// 	opacity: 1;
+			// }
+		}
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			position: relative;
 		}
 	}
 	&__content {
@@ -439,7 +568,10 @@ body {
 		height: 218px;
 	}
 	&:hover {
-		box-shadow: inset 0px 0px 0px 4px #556072;
+		box-shadow: inset 0px 0px 0px 4px $color-10;
+		.theme-dark & {
+			box-shadow: inset 0px 0px 0px 4px $color-9;
+		}
 	}
 	&:first-of-type {
 		margin-bottom: 25px;
@@ -451,15 +583,26 @@ body {
 		display: block;
 		height: 0;
 		overflow: hidden;
-		background: linear-gradient(138.85deg, #3e4b60, #485465); 
+		background: linear-gradient(138.85deg, #38475E -20.29%, rgba(255, 255, 255, 0.1) 251.32%);
+		// background: linear-gradient(138.85deg, #3e4b60, #485465); 
+		// &:before {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	display: inline-block;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	background: linear-gradient(138.85deg, #38475E -20.29%, rgba(123, 123, 123, 0) 251.32%);
+		// }
 		// img {
 		// 	width: 100%;
 		// 	height: 100%;
 		// 	object-fit: cover;
 		// }
-
 		width: 100%;
 		padding-bottom: 100%;
+		// padding-bottom: calc(100% - 47px);
 		position: relative;
 		z-index: -1;
 		img {
@@ -482,10 +625,14 @@ body {
 		width: calc(100% + 2px);
 		height: 72px;
 		line-height: 72px;
-		background-color: $color-4;
+		background-color: $color-6;
 		font-weight: 500;
 		font-size: 16px;
-		@media (max-width: $mobile-s+px) {
+		transition: background-color $timer-theme;
+		.theme-dark & {
+			background-color: $color-4;
+		}
+			@media (max-width: $mobile-s+px) {
 			height: 66px;
 			line-height: 66px;
 			font-size: 12px;
@@ -500,10 +647,14 @@ body {
 	grid-template-columns: auto 124px;
 	grid-column-gap: 12px;
 	border-radius: 24px;
-	background-color: $color-4;
+	background-color: $color-6;
 	// box-shadow: 1px 2px 4px 3px #222;
 	outline: solid 2px $color-8;
 	position: relative;
+	transition: background-color $timer-theme;
+	.theme-dark & {
+		background-color: $color-4;
+	}
 	@media (max-width: $mobile-s+px) {
 		width: calc(100% - 20px);
 		margin: 0 auto;
@@ -648,6 +799,25 @@ body {
 	}
 	&__close {
 		position: relative;
+		color: $color-8;
+		&:hover {
+			color: $color-4;
+		}
+		@media (min-width: $mobile-s2+1+px) {
+			._opened & {
+				color: $color-2;
+				&:hover {
+					color: #ccc;
+				}
+			}
+		}
+		// доделать цвета в алерте
+		.theme-dark & {
+			color: $color-2;
+			&:hover {
+				color: #ccc;
+			}
+		}
 		span {
 			position: relative;
 			z-index: 2;
@@ -661,8 +831,12 @@ body {
 			display: inline-block;
 			width: calc(100% - 4px);
 			height: calc(100% - 4px);
-			background-color: $color-4;
+			background-color: $color-6;
 			border-radius: 10px;
+			transition: background-color $timer-theme;
+			.theme-dark & {
+				background-color: $color-4;
+			}
 			._opened & {
 				@media (min-width: $mobile-s2+1+px) {
 					display: none;

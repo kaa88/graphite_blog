@@ -21,10 +21,16 @@
 		top: 40px;
 		right: 40px;
 		cursor: pointer;
-		color: $color-2;
-		transition: text-shadow $timer-hover;
+		color: $color-4;
+		transition: text-shadow $timer-hover, color $timer-theme;
+		.theme-dark & {
+			color: $color-2;
+		}
 		&:hover {
-			text-shadow: 0 0 5px rgba(255,255,255,0.7);
+			text-shadow: 0 0 5px rgba(0,0,0,0.6);
+			.theme-dark & {
+				text-shadow: 0 0 5px rgba(255,255,255,0.7);
+			}
 		}
 		@media (max-width: $mobile+px) {
 			top: 24px;

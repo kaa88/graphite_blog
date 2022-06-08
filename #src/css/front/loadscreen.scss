@@ -1,3 +1,11 @@
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
 .loadscreen {
 	position: fixed;
 	top: 0;
@@ -18,7 +26,15 @@
 		visibility: visible;
 	}
 	&__content {}
-	p {
-		font-size: 50px;
+	// p {
+	// 	font-family: sans-serif;
+	// 	font-size: 0;
+	// }
+	i:before {
+		display: inline-block;
+		font-size: 40px;
+		color: #444;
+		// transform: rotate(10deg);
+		animation: spinner 2s infinite linear;
 	}
 }

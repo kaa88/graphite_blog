@@ -16,6 +16,7 @@
 	max-width: 169px;
 	white-space: nowrap;
 	background: linear-gradient(180deg, $color-7 0%, $color-8 100%, $color-8 100%);
+	color: $color-2;
 	border-radius: 12px;
 	transition: color $timer-hover, box-shadow $timer-hover;
 	&:hover {
