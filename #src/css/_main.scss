@@ -1,7 +1,7 @@
 @import "front/header";
 @import "front/footer";
-// @import "front/modal";
-// @import "front/form";
+@import "front/modal";
+@import "front/form";
 // @import "front/select";
 // @import "front/accordion_css";
 // @import "front/accordion_js";
@@ -95,7 +95,7 @@ body {
 		}
 	}
 	&__article-box {
-		margin-top: 33px;
+		margin-top: 35px;//33
 		@media (max-width: $mobile+px) {
 			margin-top: 24px;
 		}
@@ -451,7 +451,7 @@ body {
 	flex-direction: column;
 	&__article-preview {
 		&:not(:last-child) {
-			margin-bottom: 25px;
+			margin-bottom: 27px;
 			@media (max-width: $mobile+px) {
 				margin-bottom: 12px;
 			}
@@ -533,21 +533,25 @@ body {
 }
 
 .card-box {
+	position: relative;
+	margin-left: -2px;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(auto, 242px));
-	grid-template-rows: repeat(2, auto);
-	grid-auto-rows: 0px;
-	grid-column-gap: 20px;//25
+	grid-template-columns: repeat(2, minmax(auto, 246px));//242
+	// grid-template-rows: repeat(2, auto);
+	// grid-auto-rows: 0px;
+	// grid-column-gap: 20px;//25
 	// grid-column-gap: 4.854%;//25
-	// grid-gap: 25px;
+	grid-gap: 21px;
 	// justify-content: space-around;
 	justify-content: space-between;
-	overflow: hidden;
+	align-self: start;
+	// overflow: hidden;
 	@media (max-width: $mobile+px) {
 		width: 100%;
 		max-width: 580px;
 		margin-left: auto;
 		margin-right: auto;
+		grid-gap: 12px;
 		// grid-template-columns: repeat(auto-fit, 397px);
 		// justify-content: space-around;
 	}
@@ -556,33 +560,42 @@ body {
 	}
 }
 .card-preview {
+	// box-sizing: content-box;
 	display: block;
 	position: relative;
-	height: 242px;
+	height: 0;//242
+	padding-bottom: calc(100% - 4px);
 	border-radius: 24px;
 	overflow: hidden;
-	// border: 2px solid $color-3;
-	box-shadow: inset 0px 0px 0px 4px transparent;
-	transition: all $timer-hover;
-	@media (max-width: $mobile+px) {
-		height: 218px;
+	border: 2px solid $color-5;//
+	box-shadow: inset 0 0 0 4px transparent;
+	transition: all $timer-hover, border-color $timer-theme;
+	.theme-dark & {
+		border-color: $color-3;//
 	}
-	&:hover {
-		box-shadow: inset 0px 0px 0px 4px $color-10;
+	// @media (max-width: $mobile+px) {
+	// 	height: 222px;//218
+	// }
+	@media (max-width: $mobile-s2+px) {
+		height: 246px;
+		padding-bottom: 0;
+	}
+&:hover {
+		box-shadow: inset 0 0 0 4px $color-10;
 		.theme-dark & {
-			box-shadow: inset 0px 0px 0px 4px $color-9;
+			box-shadow: inset 0 0 0 4px $color-9;
 		}
 	}
-	&:first-of-type {
-		margin-bottom: 25px;
-		@media (max-width: $mobile+px) {
-			margin-bottom: 16px;
-		}
-	}
+	// &:first-of-type {
+	// 	margin-bottom: 21px;//25
+	// 	@media (max-width: $mobile+px) {
+	// 		margin-bottom: 12px;//16
+	// 	}
+	// }
 		&__img {
 		display: block;
 		height: 0;
-		overflow: hidden;
+		// overflow: hidden;
 		background: linear-gradient(138.85deg, #38475E -20.29%, rgba(255, 255, 255, 0.1) 251.32%);
 		// background: linear-gradient(138.85deg, #3e4b60, #485465); 
 		// &:before {
@@ -601,7 +614,7 @@ body {
 		// 	object-fit: cover;
 		// }
 		width: 100%;
-		padding-bottom: 100%;
+		padding-bottom: calc(100% - 30px);
 		// padding-bottom: calc(100% - 47px);
 		position: relative;
 		z-index: -1;
@@ -612,19 +625,28 @@ body {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			object-position: top;
+		}
+		@media (max-width: $mobile-s2+px) {
+			height: 246px;
+			padding-bottom: 0;
 		}
 	}
 	&__title {
 		@include text-nowrap-multi(1);
 		position: absolute;
-		bottom: -1px;
-		left: -1px;
+		bottom: 0;
+		left: 0;
 		z-index: -1;
 		padding: 0 24px;
 		border-radius: 24px 24px 0 0;
-		width: calc(100% + 2px);
-		height: 72px;
-		line-height: 72px;
+		width: 100%;
+		// width: calc(100% + 2px);
+		height: 29.752%;
+		// height: 72px;
+		// line-height: 72px;
+		display: flex;
+		align-items: center;
 		background-color: $color-6;
 		font-weight: 500;
 		font-size: 16px;
@@ -632,9 +654,9 @@ body {
 		.theme-dark & {
 			background-color: $color-4;
 		}
-			@media (max-width: $mobile-s+px) {
-			height: 66px;
-			line-height: 66px;
+		@media (max-width: $mobile-s+px) {
+			// height: 66px;
+			// line-height: 66px;//?
 			font-size: 12px;
 		}
 	}

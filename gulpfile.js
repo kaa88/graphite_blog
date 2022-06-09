@@ -6,7 +6,7 @@ const isLiteBuild = true
 const load = {
 	// service: true,
 	// libs: true,
-	// media: true,
+	media: true,
 }
 const scriptsPrefix = 'website.';
 

@@ -118,8 +118,8 @@ scrollLock.init()
 //////////////////////////////////////////////
 
 // Modal window
-// @ @include('front/modal.js')
-// modal.init()
+@@include('front/modal.js')
+modal.init()
 
 //////////////////////////////////////////////
 

@@ -38,7 +38,7 @@ const modal = {
 	refs: {
 		translock: transitionLock,
 		scrlock: scrollLock,
-		header: header.menu.menuElem
+		// header: header.menu.menuElem
 	},
 	init: function(params = {}){
 		this.elemName = params.elem || 'modal';
@@ -107,7 +107,7 @@ const modal = {
 		}
 		else {
 			this.elem.classList.remove('_visible');
-			if (!this.refs.header.classList.contains('_active'))
+			// if (!this.refs.header.classList.contains('_active'))
 				this.refs.scrlock.unlock(this.timeout);
 		}
 	}

@@ -1,12 +1,12 @@
  .spoiler {
-	box-sizing: content-box;
+	// box-sizing: content-box;
 	// width: 507px;
 	border: 4px solid transparent;
 	border-radius: 16px;
 	background-color: $color-6;
-	overflow: hidden;
+	// overflow: hidden;
 	// transition: all $timer-spoiler;
-	transition: height $timer-spoiler, border-color $timer-hover,background-color $timer-theme;
+	transition: border-color $timer-hover,background-color $timer-theme;
 	position: relative;
 	z-index: 2;
 	.theme-dark & {
@@ -26,7 +26,7 @@
 		font-weight: 600;
 		cursor: pointer;
 		user-select: none;
-		transition: all $timer-spoiler;
+		// transition: all $timer-spoiler;
 		@media (max-width: $mobile+px) {
 			padding: 6px;
 		}
@@ -38,7 +38,7 @@
 		justify-content: space-between;
 		align-items: center;
 		border-radius: 8px;
-		transition: background-color $timer-spoiler;
+		transition: background-color $timer-hover;
 		@media (max-width: $mobile+px) {
 			height: 48px;
 		}
@@ -53,6 +53,11 @@
 	&._visible &__header-inner i {
 		transform: rotate(180deg);
 	}
+	&__wrapper {
+		overflow: hidden;
+		height: 0;
+		transition: height $timer-spoiler;
+	}
 	&__content {
 		padding: 3px 26px 30px 36px;
 		font-weight: 500;
@@ -63,7 +68,7 @@
 		}
 		p {
 			padding-right: 10px;
-			max-height: 500px;
+			max-height: 538px;
 			overflow-y: scroll;
 			&::-webkit-scrollbar {
 				width: 4px;
