@@ -2,7 +2,7 @@
 
 
 // Basic settings:
-const isLiteBuild = true
+const isLiteBuild = 0
 const load = {
 	// service: true,
 	// libs: true,

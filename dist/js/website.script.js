@@ -47,7 +47,7 @@ function getCookie() {
 }
 
 let cookies = getCookie();
-console.log(cookies);
+// console.log(cookies);
 
 //////////////////////////////////////////////
 
@@ -63,7 +63,7 @@ let pageOptions = {
 		document.body.classList.toggle(param);
 	},
 };
-console.log(pageOptions)
+// console.log(pageOptions)
 
 if (cookies) {
 	if (cookies.theme) pageOptions.setOpt(pageOptions.themePrefix + cookies.theme);
